@@ -1,0 +1,5 @@
+#!/bin/bash
+
+python /home/pi/Desktop/Github/IoToy/recievePi4.py
+
+xdg-open http://0.0.0.0:5000/ 
