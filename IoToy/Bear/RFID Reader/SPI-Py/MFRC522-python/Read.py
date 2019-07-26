@@ -36,6 +36,7 @@ def end_read(signal,frame):
     continue_reading = False
     GPIO.cleanup()
 
+# Publish connection to broker 
 def sendConnectSignal():
     global connected
     try:

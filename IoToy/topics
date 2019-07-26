@@ -1,0 +1,8 @@
+sensors/RFID/raw
+            /processed
+       
+sensors/proximity/count
+                 /reset             
+
+sensors/accelerometer/data
+                     /magnitude

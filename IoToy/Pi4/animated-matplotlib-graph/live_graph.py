@@ -39,14 +39,14 @@ def setup_mqtt():
     return client
 
 def OnConnect(client,userdata,flags,rc):
-    client.subscribe("test/message")
+    client.subscribe("sensors/proximity/count")
     
         
     
 def OnMessage(client,userdata,msg):
     global temp_value
     global counter
-    if msg.topic =="test/message":
+    if msg.topic =="sensors/proximity/count":
         temp_value=(int(msg.payload.decode()))
     
         

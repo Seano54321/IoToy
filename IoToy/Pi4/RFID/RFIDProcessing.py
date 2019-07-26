@@ -2,10 +2,14 @@ import paho.mqtt.client as mqtt
 import paho.mqtt.publish as pub
 import time
 
+# Declare dictionary of places and associated ID's, add here to expand 
 places = {'73,65,173,135':('Bed',1)}
+
 currentPlace = 'Unknown'
 position = 0
 timer = 0
+# If time since last recieved message goes over this then script returns to publishing Unknown
+timeLimit = 3
 
 def on_message(client,user_data,message):
     print('Card Number: ' + message.payload.decode())
@@ -15,6 +19,7 @@ def on_message(client,user_data,message):
         global currentPlace
         currentPlace = places[message.payload.decode()][0]
         global timer
+        # Sets timer back to zero to reset, ensures 
         timer = 0
 
 client = mqtt.Client('RFIDProcessor')
@@ -28,7 +33,7 @@ while True:
     print(currentPlace)
     timer += 0.1
     # How long to wait since recieving a location until reverting back to unknown
-    if (timer >= 3):
+    if (timer >= timeLimit):
         currentPlace = 'Unknown'
         position = 0
         timer = 0
